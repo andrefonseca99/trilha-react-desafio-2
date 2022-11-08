@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import gitLogo from '../assets/github.png'
 import Input from '../components/Input';
 import Button from '../components/Button';
@@ -12,6 +12,8 @@ function App() {
 
   const [currentRepo, setCurrentRepo] = useState('');
   const [repos, setRepos] = useState([]);
+
+  useEffect(() => {}, [repos])
 
 
   const handleSearchRepo = async () => {
@@ -34,9 +36,9 @@ function App() {
   }
 
   const handleRemoveRepo = (id) => {
-    console.log('Removendo registro', id);
-
     // utilizar filter.
+    const filterRepos = repos.filter((value) => value.id !== id);
+    setRepos(filterRepos);
   }
 
 
